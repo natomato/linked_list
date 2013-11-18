@@ -147,9 +147,7 @@ describe LinkedList do
   describe "#adding a node" do
     subject(:list) { LinkedList.new() }
     let(:node1) { list.add(1) } 
-
     
-
     it 'returns self to allow chained messages' do
       pending
       ll = LinkedList.new()
