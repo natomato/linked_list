@@ -11,15 +11,15 @@ class LinkedList
   end
 
   def add(value)
+    node = Node.new(value, nil, @last) 
 
-    value.prev = @last
     if empty?
-      @head = value
+      initialize(node)
     else
-      @last.next = value
+      @last.next = node
+      @last = node
     end
-    @last = value
-    self
+    node
   end
 
   def remove(node)
