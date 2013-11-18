@@ -23,25 +23,11 @@ class LinkedList
   end
 
   def find(value)
-    results = []
-    currentNode = @head
-    while currentNode
-      if currentNode.value == value
-        results << currentNode
-      end
-      currentNode = currentNode.next
-    end
-    results
+    select { |node| node.value == value } 
   end
 
-  def print
-    results = []
-    currentNode = @head
-    while currentNode
-      results << currentNode.value
-      currentNode = currentNode.next
-    end
-    results
+  def display 
+    map { |node| node.value }
   end
 
   def remove(node)
@@ -59,6 +45,26 @@ class LinkedList
     end
   end
 
+  private #-------------------
+  def map
+    results = []
+    currentNode = head
+    while currentNode
+      results << yield(currentNode)
+      currentNode = currentNode.next
+    end
+    results
+  end
+
+  def select
+    results = []
+    currentNode = head
+    while currentNode
+      results << currentNode if yield(currentNode)
+      currentNode = currentNode.next
+    end
+    results
+  end
 end
 
 class Node

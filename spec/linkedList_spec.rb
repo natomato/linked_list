@@ -87,9 +87,9 @@ describe LinkedList do
       end
     end
 
-    describe '#print' do
-      it 'will print an array of node values in order' do
-        list.print.should == [1,2,3]
+    describe '#display' do
+      it 'will return an array of node values in order' do
+        list.display.should == [1, 2, 3]
       end
     end
 
