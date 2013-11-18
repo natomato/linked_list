@@ -90,7 +90,16 @@ describe LinkedList do
         list.head.should == node2
         list.head.prev.should == nil
       end
+
+      describe '#find' do
+        context 'where the value no exist' do
+          it 'returns an array of all nodes with that value' do
+            
+          end
+        end
+      end
     end
+
   end
 
   describe '#add' do
@@ -101,7 +110,8 @@ describe LinkedList do
     end
   end
 
-  
+
+
 end
 
 describe Node do
