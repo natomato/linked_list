@@ -6,7 +6,7 @@ describe LinkedList do
   describe '#initialize' do
     it 'can be initialized with a list of values' do
       pending "print"
-      list = LinkedList.new(1,2, 3)
+      list = LinkedList.new(1,2,3)
       list.print.should == [1,2,3]
     end
   end
@@ -37,8 +37,9 @@ describe LinkedList do
   end
 
   context "a list with one node" do
-    subject(:list) { LinkedList.new(node1) }
     let(:node1) { Node.new(1) }
+    subject(:list) { LinkedList.new(node1) }
+    
 
     it { should_not be_empty }
 
@@ -46,33 +47,9 @@ describe LinkedList do
       list.last.should == list.head
     end 
 
-    it 'adds new elements to the end of the list' do
-      expect {list.add(2)}.to change{list.last.value}.from(1).to(2)
-    end
-
-    it 'after adding nodes the first node doesnt change' do
-      list.add(2)
-      list.head.should == node1
-    end
-
-    it "ensures the last node's next attribute is nil" do
-      list.add(2)
-      list.last.next.should == nil
-    end
-
-    it 'updates the previous attribute of newly added node' do
-      list.add(2)
-      list.last.prev.should == node1
-    end
-
-    it 'updates the next attribute of the second to last node' do
-      old_last = list.last
-      node2 = list.add(2)
-      old_last.next.should == node2
-    end
-
     it 'removes the only node' do
-      pending
+      list.remove(node1)
+      list.should be_empty
     end
   end
 
@@ -81,7 +58,6 @@ describe LinkedList do
       @long_list = LinkedList.new()
       (1..3).each { |n| @long_list.add n }
     end
-
     let(:node1) { @long_list.head }
     let(:node2) { node1.next }
     let(:node3) { node2.next }
@@ -101,7 +77,31 @@ describe LinkedList do
     end
 
     describe '#add' do
-      it 'will not add a node that already exists'
+      before(:each) do
+        @long_list.add(4)
+      end
+
+      it 'adds it to the end of the list' do
+        @long_list.last.value.should == 4
+      end
+
+      it 'the first node doesnt change' do
+        @long_list.head.should == node1
+      end
+
+      it "the last node's next attribute is nil" do
+        @long_list.last.next.should == nil
+      end
+
+      it 'the new node points back to the last node' do
+        @long_list.last.prev.should == node3
+      end
+
+      it 'the last node points to the new node' do
+        old_last = @long_list.last
+        node = @long_list.add(99)
+        old_last.next.should == node
+      end
     end
 
     describe '#remove' do
@@ -144,7 +144,12 @@ describe LinkedList do
     end
   end
 
-  describe '#add' do
+  describe "#adding a node" do
+    subject(:list) { LinkedList.new() }
+    let(:node1) { list.add(1) } 
+
+    
+
     it 'returns self to allow chained messages' do
       pending
       ll = LinkedList.new()

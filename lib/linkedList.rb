@@ -33,11 +33,11 @@ class LinkedList
   def remove(node)
     if node.next.nil?
       @last = node.prev
-      @last.next = nil
+      @last.next = nil if @last
     end
     if node.prev.nil?
       @head = node.next
-      @head.prev = nil
+      @head.prev = nil if @head
     end
     if node.next && node.prev
       node.prev.next = node.next 
