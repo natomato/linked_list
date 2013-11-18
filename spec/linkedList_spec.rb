@@ -13,7 +13,7 @@ describe LinkedList do
     it { should be_empty }
     it { list.head.should == nil}
     it { list.last.should == nil}
-    
+
     it 'can add a node to an empty list' do
       node1 = list.add(1)
       list.should_not be_empty
@@ -65,14 +65,24 @@ describe LinkedList do
 
   context "a list with many nodes" do
     subject(:list) do
-      ll = LinkedList.new()
+      ll = LinkedList.new() 
       ll.add(1)
       ll.add(2)
       ll.add(3)
+      ll
     end
-    let(:ll1) { list.head }
-    let(:ll2) { ll1.next }
-    let(:ll3) { ll2.next }
+
+    let(:node1) { list.head }
+    let(:node2) { node1.next }
+    let(:node3) { node2.next }
+
+    describe "the test list" do
+      it 'was built in order' do
+        list.head.should == node1
+        node1.next.should == node2
+        node2.next.should == node3
+      end
+    end
 
     describe '#add' do
       it 'will not add a node that already exists'
@@ -80,9 +90,9 @@ describe LinkedList do
 
     describe '#remove' do
       it 'can remove a node from the end of a list' do
-        list.last.should == ll3
-        list.remove(ll3)
-        list.last.should == ll2
+        list.last.should == node3
+        list.remove(node3)
+        list.last.should == node2
         list.last.next.should == nil
       end
 
@@ -115,9 +125,8 @@ describe LinkedList do
 
       context 'where many values exist' do
         it 'returns an array with those nodes' do
-          node = Node.new(2)
-          list.add(node)
-          list.find(2).should == [node2, node]
+          new2 = list.add(2)
+          list.find(2).should == [node2, new2]
         end
       end
     end
