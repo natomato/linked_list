@@ -10,20 +10,15 @@ class LinkedList
     @head.nil?
   end
 
-  def add(input)
-    if input.class == Node
-      node = Node.new(input.value)
-    else
-      node = Node.new(input)
-    end
+  def add(value)
 
-    node.prev = @last
+    value.prev = @last
     if empty?
-      @head = node
+      @head = value
     else
-      @last.next = node
+      @last.next = value
     end
-    @last = node
+    @last = value
     self
   end
 

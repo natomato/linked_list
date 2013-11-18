@@ -71,10 +71,7 @@ describe LinkedList do
     end
 
     describe '#add' do
-      it 'will not add a node that already exists' do
-        list.add(node2) 
-        list.find(2).should have(2).nodes
-      end
+      it 'will not add a node that already exists'
     end
 
     describe '#remove' do
