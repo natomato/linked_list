@@ -2,10 +2,14 @@ require 'rspec'
 require 'linkedList'
 
 describe LinkedList do
-  # let(:list) { LinkedList.new() }
-  # let(:node1) { Node.new(1) }
-  # let(:node2) { Node.new(2) }
-  # let(:node3) { Node.new(3) }
+
+  describe '#initialize' do
+    it 'can be initialized with a list of values' do
+      pending "print"
+      list = LinkedList.new(1,2, 3)
+      list.print.should == [1,2,3]
+    end
+  end
 
   context "an empty list" do
     subject(:list) { LinkedList.new() }
@@ -25,7 +29,6 @@ describe LinkedList do
   context "a list with one node" do
     subject(:list) { LinkedList.new(node1) }
     let(:node1) { Node.new(1) }
-    # let(:node2) { list.add(2) }
 
     it { should_not be_empty }
 
@@ -81,6 +84,12 @@ describe LinkedList do
         list.head.should == node1
         node1.next.should == node2
         node2.next.should == node3
+      end
+    end
+
+    describe '#print' do
+      it 'will print an array of node values in order' do
+        list.print.should == [1,2,3]
       end
     end
 

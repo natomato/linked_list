@@ -22,6 +22,28 @@ class LinkedList
     node
   end
 
+  def find(value)
+    results = []
+    currentNode = @head
+    while currentNode
+      if currentNode.value == value
+        results << currentNode
+      end
+      currentNode = currentNode.next
+    end
+    results
+  end
+
+  def print
+    results = []
+    currentNode = @head
+    while currentNode
+      results << currentNode.value
+      currentNode = currentNode.next
+    end
+    results
+  end
+
   def remove(node)
     if node.next.nil?
       @last = node.prev
@@ -35,18 +57,6 @@ class LinkedList
       node.prev.next = node.next 
       node.next.prev = node.prev
     end
-  end
-
-  def find(value)
-    results = []
-    currentNode = @head
-    while currentNode
-      if currentNode.value == value
-        results << currentNode
-      end
-      currentNode = currentNode.next
-    end
-    results
   end
 
 end
