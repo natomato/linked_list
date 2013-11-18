@@ -70,6 +70,13 @@ describe LinkedList do
       ll.add(node3)
     end
 
+    describe '#add' do
+      it 'will not add a node that already exists' do
+        list.add(node2) 
+        list.find(2).should have(2).nodes
+      end
+    end
+
     describe '#remove' do
       it 'removes the last node' do
         list.last.should == node3
@@ -90,16 +97,29 @@ describe LinkedList do
         list.head.should == node2
         list.head.prev.should == nil
       end
+    end
 
-      describe '#find' do
-        context 'where the value no exist' do
-          it 'returns an array of all nodes with that value' do
-            
-          end
+    describe '#find' do
+      context 'where the value no exist' do
+        it 'returns an empty array' do
+          list.find(4).should == [] 
+        end
+      end
+
+      context 'where a single value exist' do
+        it 'returns an array with one element' do
+          list.find(2).should == [node2] 
+        end
+      end
+
+      context 'where many values exist' do
+        it 'returns an array with those nodes' do
+          node = Node.new(2)
+          list.add(node)
+          list.find(2).should == [node2, node]
         end
       end
     end
-
   end
 
   describe '#add' do
@@ -109,9 +129,6 @@ describe LinkedList do
       ll.last.should == node2
     end
   end
-
-
-
 end
 
 describe Node do
