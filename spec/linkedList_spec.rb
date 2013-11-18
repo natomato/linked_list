@@ -112,9 +112,7 @@ describe LinkedList do
       end
 
       it 'removes the first node' do
-        list.head.should == node1
-        list.remove(node1)
-        list.head.should == node2
+        expect {list.remove(node1)}.to change{list.head}.from(node1).to(node2)
         list.head.prev.should == nil
       end
     end
