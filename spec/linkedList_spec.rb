@@ -15,8 +15,18 @@ describe LinkedList do
     subject(:list) { LinkedList.new() }
 
     it { should be_empty }
-    it { list.head.should == nil}
-    it { list.last.should == nil}
+
+    it 'head is nil' do
+      list.head.should == nil
+    end
+
+    it 'last is nil' do
+      list.head.should == nil
+    end
+
+    it 'should display []' do
+      list.display.should == []
+    end
 
     it 'can add a node to an empty list' do
       node1 = list.add(1)
@@ -67,21 +77,18 @@ describe LinkedList do
   end
 
   context "a list with many nodes" do
-    subject(:list) do
-      ll = LinkedList.new() 
-      ll.add(1)
-      ll.add(2)
-      ll.add(3)
-      ll
+    before(:each) do
+      @long_list = LinkedList.new()
+      (1..3).each { |n| @long_list.add n }
     end
 
-    let(:node1) { list.head }
+    let(:node1) { @long_list.head }
     let(:node2) { node1.next }
     let(:node3) { node2.next }
 
     describe "the test list" do
       it 'was built in order' do
-        list.head.should == node1
+        @long_list.head.should == node1
         node1.next.should == node2
         node2.next.should == node3
       end
@@ -89,7 +96,7 @@ describe LinkedList do
 
     describe '#display' do
       it 'will return an array of node values in order' do
-        list.display.should == [1, 2, 3]
+        @long_list.display.should == [1, 2, 3]
       end
     end
 
@@ -99,41 +106,39 @@ describe LinkedList do
 
     describe '#remove' do
       it 'can remove a node from the end of a list' do
-        list.last.should == node3
-        list.remove(node3)
-        list.last.should == node2
-        list.last.next.should == nil
+        expect{@long_list.remove(node3)}.to change{@long_list.last}.from(node3).to(node2)
+        @long_list.last.next.should == nil
       end
 
       it 'removes a middle node' do
-        list.remove(node2)
-        list.head.next.should == node3
-        list.last.prev.should == node1
+        @long_list.remove(node2)
+        @long_list.head.next.should == node3
+        @long_list.last.prev.should == node1
       end
 
       it 'removes the first node' do
-        expect {list.remove(node1)}.to change{list.head}.from(node1).to(node2)
-        list.head.prev.should == nil
+        expect {@long_list.remove(node1)}.to change{@long_list.head}.from(node1).to(node2)
+        @long_list.head.prev.should == nil
       end
     end
 
     describe '#find' do
       context 'where the value no exist' do
         it 'returns an empty array' do
-          list.find(4).should == [] 
+          @long_list.find(4).should == [] 
         end
       end
 
       context 'where a single value exist' do
         it 'returns an array with one element' do
-          list.find(2).should == [node2] 
+          @long_list.find(2).should == [node2] 
         end
       end
 
       context 'where many values exist' do
         it 'returns an array with those nodes' do
-          new2 = list.add(2)
-          list.find(2).should == [node2, new2]
+          new2 = @long_list.add(2)
+          @long_list.find(2).should == [node2, new2]
         end
       end
     end
