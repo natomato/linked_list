@@ -6,11 +6,6 @@ class LinkedList
     values.map { |num| self.add(num) }
   end
 
-  def create_first_node(node)
-    @first = node
-    @last = node
-  end
-
   def empty?
     @first.nil?
   end
@@ -60,6 +55,10 @@ class LinkedList
     end
   end
 
+  def create_first_node(node)
+    @first = node
+    @last = node
+  end
 end
 
 class Node
@@ -70,13 +69,6 @@ class Node
     @prev = prev
     @nextNode = nextNode
   end
-
-  # def add(node)
-  #   old_next  = self.next
-  #   self.next = node
-  #   node.prev = self
-  #   node.next = old_next 
-  # end
 
   def next
     @nextNode
