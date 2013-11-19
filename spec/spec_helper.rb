@@ -14,4 +14,9 @@ RSpec.configure do |config|
   # the seed, which is printed after each run.
   #     --seed 1234
   config.order = 'random'
+
+  # allows only the newer expect syntax, not .should
+  config.expect_with  :rspec do |c|
+    c.syntax = :expect
+  end
 end

@@ -24,10 +24,6 @@ class LinkedList
     list.map { |num| self.add(num) }
   end
 
-  # def make_nodes(values)
-  #   values.map {|val| Node.new(val) }
-  # end
-
   def create_first_node(node)
     @first = node
     @last = node
