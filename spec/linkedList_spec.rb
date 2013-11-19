@@ -201,14 +201,14 @@ describe Node do
     end
   end
 
-  describe '#add' do
-    before(:each) { node.add(node2) } 
+  # describe '#add' do
+  #   before(:each) { node.add(node2) } 
 
-    it 'updates its own next pointer' do
-      node.next.should == node2
-    end
-    it 'updates the new nodes prev pointer' do
-      node2.prev.should == node
-    end
-  end
+  #   it 'updates its own next pointer' do
+  #     node.next.should == node2
+  #   end
+  #   it 'updates the new nodes prev pointer' do
+  #     node2.prev.should == node
+  #   end
+  # end
 end

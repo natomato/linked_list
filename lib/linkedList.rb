@@ -93,12 +93,12 @@ class Node
     @nextNode = nextNode
   end
 
-  def add(node)
-    old_next  = self.next
-    self.next = node
-    node.prev = self
-    node.next = old_next 
-  end
+  # def add(node)
+  #   old_next  = self.next
+  #   self.next = node
+  #   node.prev = self
+  #   node.next = old_next 
+  # end
 
   def next
     @nextNode
