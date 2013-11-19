@@ -4,8 +4,15 @@ require 'linkedList'
 describe LinkedList do
 
   describe '#initialize' do
-    it 'can be initialized with a list of values' do
-      pending "print"
+    it 'can not take a node'
+
+    it 'can take an integer' do
+      list = LinkedList.new(1)
+      list.first.value.should == 1
+    end
+
+    it 'can take a list of integers' do
+      pending
       list = LinkedList.new(1,2,3)
       list.print.should == [1,2,3]
     end
@@ -37,8 +44,8 @@ describe LinkedList do
   end
 
   context "a list with one node" do
-    let(:node1) { Node.new(1) }
-    subject(:list) { LinkedList.new(node1) }
+    subject(:list) { LinkedList.new(1) }
+    let(:node1) { list.first }
     
 
     it { should_not be_empty }
@@ -169,8 +176,7 @@ describe Node do
 
   describe '#value=' do
     it "can change value" do
-      node.value = 5
-      node.value.should == 5
+      expect{node.value = 5}.to change{node.value}.from(1).to(5) 
     end
   end
 
@@ -195,4 +201,14 @@ describe Node do
     end
   end
 
+  describe '#add' do
+    before(:each) { node.add(node2) } 
+
+    it 'updates its own next pointer' do
+      node.next.should == node2
+    end
+    it 'updates the new nodes prev pointer' do
+      node2.prev.should == node
+    end
+  end
 end

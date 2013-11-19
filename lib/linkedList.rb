@@ -2,7 +2,33 @@ class LinkedList
   include Enumerable
   attr_reader :last, :first
 
-  def initialize(node = nil)
+  def initialize(*values)
+    # nodes = make_nodes(params)
+    # first = params.shift
+    # first = Node.new(first) unless first.class == Node
+    # create_first_node(first)
+
+    # params.reduce(&:add)
+    #   params.each do |param|
+    #     node = Node.new(param) unless param.class == Node
+
+    #   end
+    # end
+
+    node = Node.new(values.shift) unless values.empty?
+    @first = node
+    @last = node
+  end
+
+  def add_list(*list)
+    list.map { |num| self.add(num) }
+  end
+
+  # def make_nodes(values)
+  #   values.map {|val| Node.new(val) }
+  # end
+
+  def create_first_node(node)
     @first = node
     @last = node
   end
@@ -15,7 +41,7 @@ class LinkedList
     node = Node.new(value, nil, @last) 
 
     if empty?
-      initialize(node)
+      create_first_node(node)
     else
       @last.next = node
       @last = node
@@ -65,6 +91,13 @@ class Node
     @value = value
     @prev = prev
     @nextNode = nextNode
+  end
+
+  def add(node)
+    old_next  = self.next
+    self.next = node
+    node.prev = self
+    node.next = old_next 
   end
 
   def next
