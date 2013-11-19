@@ -1,4 +1,5 @@
 class LinkedList
+  include Enumerable
   attr_reader :last, :head
 
   def initialize(node = nil)
@@ -46,25 +47,15 @@ class LinkedList
   end
 
   private #-------------------
-  def map
-    results = []
+
+  def each
     currentNode = head
     while currentNode
-      results << yield(currentNode)
+      yield currentNode
       currentNode = currentNode.next
     end
-    results
   end
 
-  def select
-    results = []
-    currentNode = head
-    while currentNode
-      results << currentNode if yield(currentNode)
-      currentNode = currentNode.next
-    end
-    results
-  end
 end
 
 class Node
