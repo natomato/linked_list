@@ -12,9 +12,8 @@ describe LinkedList do
     end
 
     it 'can take a list of integers' do
-      pending
       list = LinkedList.new(1,2,3)
-      expect(list.print).to eq([1,2,3])
+      expect(list.display).to eq([1,2,3])
     end
   end
 
@@ -57,6 +56,10 @@ describe LinkedList do
     it 'removes the only node' do
       list.remove(node1)
       expect(list).to be_empty
+    end
+
+    it 'displays an array of one item' do
+      expect(list.display).to eq([1])
     end
   end
 

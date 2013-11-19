@@ -3,25 +3,7 @@ class LinkedList
   attr_reader :last, :first
 
   def initialize(*values)
-    # nodes = make_nodes(params)
-    # first = params.shift
-    # first = Node.new(first) unless first.class == Node
-    # create_first_node(first)
-
-    # params.reduce(&:add)
-    #   params.each do |param|
-    #     node = Node.new(param) unless param.class == Node
-
-    #   end
-    # end
-
-    node = Node.new(values.shift) unless values.empty?
-    @first = node
-    @last = node
-  end
-
-  def add_list(*list)
-    list.map { |num| self.add(num) }
+    values.map { |num| self.add(num) }
   end
 
   def create_first_node(node)
