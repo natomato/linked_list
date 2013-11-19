@@ -14,7 +14,7 @@ class LinkedList
     node = Node.new(value, nil, @last) 
 
     if empty?
-      create_first_node(node)
+      @first = @last = node
     else
       @last.next = node
       @last = node
@@ -55,11 +55,6 @@ class LinkedList
     end
   end
 
-  def create_first_node(node)
-    @first = node
-    @last = node
-  end
-
 end
 
 class Node
@@ -78,11 +73,4 @@ class Node
   def next=(node)
     @nextNode = node
   end
-
-  # def ==(other)
-  #   self.value == other.value &&
-  #   self.next.object_id == other.next.object_id &&
-  #   self.prev.object_id == other.prev.object_id 
-  # end
-
 end
