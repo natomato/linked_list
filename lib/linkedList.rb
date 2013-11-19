@@ -12,7 +12,6 @@ class LinkedList
 
   def add(value)
     node = Node.new(value, nil, @last) 
-
     if empty?
       @first = @last = node
     else
@@ -34,11 +33,9 @@ class LinkedList
     if node == last
       @last = node.prev
     end
-
     if node == first
       @first = node.next
     end
-
     prev_node = node.prev
     next_node = node.next
     prev_node.next = next_node if prev_node 
