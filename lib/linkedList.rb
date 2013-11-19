@@ -1,14 +1,14 @@
 class LinkedList
   include Enumerable
-  attr_reader :last, :head
+  attr_reader :last, :first
 
   def initialize(node = nil)
-    @head = node
+    @first = node
     @last = node
   end
 
   def empty?
-    @head.nil?
+    @first.nil?
   end
 
   def add(value)
@@ -37,8 +37,8 @@ class LinkedList
       @last.next = nil if @last
     end
     if node.prev.nil?
-      @head = node.next
-      @head.prev = nil if @head
+      @first = node.next
+      @first.prev = nil if @first
     end
     if node.next && node.prev
       node.prev.next = node.next 
@@ -49,7 +49,7 @@ class LinkedList
   private #-------------------
 
   def each
-    currentNode = head
+    currentNode = first
     while currentNode
       yield currentNode
       currentNode = currentNode.next

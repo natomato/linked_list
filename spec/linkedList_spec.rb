@@ -16,12 +16,12 @@ describe LinkedList do
 
     it { should be_empty }
 
-    it 'head is nil' do
-      list.head.should == nil
+    it 'first is nil' do
+      list.first.should == nil
     end
 
     it 'last is nil' do
-      list.head.should == nil
+      list.first.should == nil
     end
 
     it 'should display []' do
@@ -31,7 +31,7 @@ describe LinkedList do
     it 'can add a node to an empty list' do
       node1 = list.add(1)
       list.should_not be_empty
-      list.head.should == node1
+      list.first.should == node1
       list.last.should == node1
     end
   end
@@ -43,8 +43,8 @@ describe LinkedList do
 
     it { should_not be_empty }
 
-    it 'has the same head and last node' do
-      list.last.should == list.head
+    it 'has the same first and last node' do
+      list.last.should == list.first
     end 
 
     it 'removes the only node' do
@@ -58,13 +58,13 @@ describe LinkedList do
       @long_list = LinkedList.new()
       (1..3).each { |n| @long_list.add n }
     end
-    let(:node1) { @long_list.head }
+    let(:node1) { @long_list.first }
     let(:node2) { node1.next }
     let(:node3) { node2.next }
 
     describe "the test list" do
       it 'was built in order' do
-        @long_list.head.should == node1
+        @long_list.first.should == node1
         node1.next.should == node2
         node2.next.should == node3
       end
@@ -86,7 +86,7 @@ describe LinkedList do
       end
 
       it 'the first node doesnt change' do
-        @long_list.head.should == node1
+        @long_list.first.should == node1
       end
 
       it "the last node's next attribute is nil" do
@@ -112,13 +112,13 @@ describe LinkedList do
 
       it 'removes a middle node' do
         @long_list.remove(node2)
-        @long_list.head.next.should == node3
+        @long_list.first.next.should == node3
         @long_list.last.prev.should == node1
       end
 
       it 'removes the first node' do
-        expect {@long_list.remove(node1)}.to change{@long_list.head}.from(node1).to(node2)
-        @long_list.head.prev.should == nil
+        expect {@long_list.remove(node1)}.to change{@long_list.first}.from(node1).to(node2)
+        @long_list.first.prev.should == nil
       end
     end
 
