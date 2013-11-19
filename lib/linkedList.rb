@@ -31,18 +31,18 @@ class LinkedList
   end
 
   def remove(node)
-    if node.next.nil?
+    if node == last
       @last = node.prev
-      @last.next = nil if @last
     end
-    if node.prev.nil?
+
+    if node == first
       @first = node.next
-      @first.prev = nil if @first
     end
-    if node.next && node.prev
-      node.prev.next = node.next 
-      node.next.prev = node.prev
-    end
+
+    prev_node = node.prev
+    next_node = node.next
+    prev_node.next = next_node if prev_node 
+    next_node.prev = prev_node if next_node
   end
 
   private #-------------------
@@ -59,6 +59,7 @@ class LinkedList
     @first = node
     @last = node
   end
+
 end
 
 class Node
@@ -77,5 +78,11 @@ class Node
   def next=(node)
     @nextNode = node
   end
+
+  # def ==(other)
+  #   self.value == other.value &&
+  #   self.next.object_id == other.next.object_id &&
+  #   self.prev.object_id == other.prev.object_id 
+  # end
 
 end

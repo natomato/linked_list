@@ -116,7 +116,8 @@ describe LinkedList do
 
     describe '#remove' do
       it 'can remove a node from the end of a list' do
-        expect { @long_list.remove(node3) }.to change{@long_list.last}.from(node3).to(node2)
+        @long_list.remove(node3)
+        expect(@long_list.display).to eq([1, 2])
         expect(@long_list.last.next).to be_nil
       end
 
@@ -127,13 +128,14 @@ describe LinkedList do
       end
 
       it 'removes the first node' do
-        expect { @long_list.remove(node1) }.to change{@long_list.first}.from(node1).to(node2)
+        @long_list.remove(node1)
+        expect(@long_list.display).to eq([2, 3])
         expect(@long_list.first.prev).to be_nil
       end
     end
 
     describe '#find' do
-      context 'where the value no exist' do
+      context 'where the value does not exist' do
         it 'returns an empty array' do
           expect(@long_list.find(4)).to eq([])
         end
@@ -151,18 +153,6 @@ describe LinkedList do
           expect(@long_list.find(2)).to eq([node2, new2])
         end
       end
-    end
-  end
-
-  describe "#adding a node" do
-    subject(:list) { LinkedList.new() }
-    let(:node1) { list.add(1) } 
-    
-    it 'returns self to allow chained messages' do
-      pending
-      ll = LinkedList.new()
-      ll = list.add(node1).add(node2)
-      ll.last.should == node2
     end
   end
 end
