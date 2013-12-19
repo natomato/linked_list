@@ -34,6 +34,21 @@ describe LinkedList do
       expect(list.display).to eq([])
     end
 
+    describe 'when adding a node' do
+      before(:each) { node1 = list.add(1) }
+      # let(:node1) { list.add(1) }
+
+      it 'will not be empty' do
+        expect(list).not_to be_empty
+      end
+
+      it 'will set the head to the new node' do
+        pending "defining a value for node1"
+        expect(list.first).to eq(node1)
+      end
+    end
+
+
     it 'can add a node to an empty list' do
       node1 = list.add(1)
       expect(list).not_to be_empty
